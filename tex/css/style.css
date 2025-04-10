@@ -6,7 +6,11 @@ body {
 }
 
 nav.TOC {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 200px; /* šířka levého sloupce */
+  height: 100vh; /* výška menu */
   background-color: #f0f0f0;
   padding: 20px;
   border: 1px solid #ccc;
