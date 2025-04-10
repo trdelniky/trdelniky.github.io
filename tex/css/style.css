@@ -1,1 +1,36 @@
 nav.TOC span{display: block;}
+
+body {
+  display: flex;
+  flex-direction: row;
+}
+
+nav.TOC {
+  width: 200px; /* šířka levého sloupce */
+  background-color: #f0f0f0;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+main.main-content {
+  flex: 1; /* zbývající prostor pro hlavní obsah */
+  padding: 20px;
+}
+
+nav.TOC span.chapterToc {
+  display: block;
+  margin-bottom: 10px;
+}
+
+nav.TOC span.sectionToc {
+  display: none;
+  margin-left: 20px;
+}
+
+nav.TOC span.chapterToc.clicked ~ span.sectionToc {
+  display: block;
+}
+nav.TOC span.chapterToc.clicked ~ span.chapterToc ~ span.sectionToc{
+  display: none;
+}
+
