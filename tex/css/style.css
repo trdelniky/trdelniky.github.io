@@ -1,4 +1,4 @@
-nav.TOC span{display: block;}
+nav.TOC span, nav.minitoc span{display: block;}
 
 body {
   display: flex;
@@ -15,6 +15,19 @@ nav.TOC {
   padding: 20px;
   border: 1px solid #ccc;
 }
+
+.sectionTOCS{
+  position: fixed;
+  top: 0;
+  left: 100%;
+  margin-left: -300px;
+  width: 300px; /* šířka levého sloupce */
+}
+ .sectionTOCS .likesectionToc, .sectionTOCS .sectionToc,
+ .sectionTOCS .likesubsectionToc, .sectionTOCS .subsectionToc,
+ .sectionTOCS .likesubsectionToc, .sectionTOCS .subsectionToc,
+ .sectionTOCS .likesubsubsectionToc, .sectionTOCS .subsubsectionToc {margin-left:0em;}
+
 
 main.main-content {
   flex: 1; /* zbývající prostor pro hlavní obsah */
