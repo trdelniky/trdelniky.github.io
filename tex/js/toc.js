@@ -2,19 +2,17 @@ document.addEventListener('DOMContentLoaded', function() {
   const chapterTocs = document.querySelectorAll('nav.TOC span.chapterToc');
   chapterTocs.forEach(function(chapterToc) {
     chapterToc.addEventListener('click', function(event) {
-      event.preventDefault(); // zabránit otevření stránky
+      const nextElement = chapterToc.nextElementSibling;
+      if (nextElement && nextElement.classList.contains('sectionToc') && nextElement.tagName === 'SPAN') {
+        // if the next element is a sectionToc, prevent the default action
+        // otherwise, the chapter doesn't contain any sections and should be opened
+        event.preventDefault(); 
+      }
       const chapterTocs = chapterToc.parentNode.querySelectorAll('span.chapterToc');
+      // remove the clicked class from all other chapterTocs
       chapterTocs.forEach(function(otherChapterToc) {
         if (otherChapterToc !== chapterToc) {
           otherChapterToc.classList.remove('clicked');
-        }
-      });
-      const sectionTocs = chapterToc.parentNode.querySelectorAll('span.sectionToc');
-      sectionTocs.forEach(function(sectionToc) {
-        if (chapterToc.classList.contains('clicked')) {
-          sectionToc.classList.add('show');
-        } else {
-          sectionToc.classList.remove('show');
         }
       });
       chapterToc.classList.toggle('clicked');
