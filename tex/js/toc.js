@@ -1,22 +1,50 @@
 document.addEventListener('DOMContentLoaded', function() {
   const chapterTocs = document.querySelectorAll('nav.TOC span.chapterToc');
-  chapterTocs.forEach(function(chapterToc) {
-    chapterToc.addEventListener('click', function(event) {
-      const nextElement = chapterToc.nextElementSibling;
-      if (nextElement && nextElement.classList.contains('sectionToc') && nextElement.tagName === 'SPAN') {
-        // if the next element is a sectionToc, prevent the default action
-        // otherwise, the chapter doesn't contain any sections and should be opened
-        event.preventDefault(); 
+  
+  function handleChapterTocClick(event) {
+    const nextElement = this.nextElementSibling;
+    if (nextElement && nextElement.classList.contains('sectionToc')) {
+      event.preventDefault(); 
+    }
+    
+    const chapterTocs = this.parentNode.querySelectorAll('span.chapterToc');
+    chapterTocs.forEach(function(otherChapterToc) {
+      if (otherChapterToc !== this) {
+        otherChapterToc.classList.remove('clicked');
       }
-      const chapterTocs = chapterToc.parentNode.querySelectorAll('span.chapterToc');
-      // remove the clicked class from all other chapterTocs
-      chapterTocs.forEach(function(otherChapterToc) {
-        if (otherChapterToc !== chapterToc) {
-          otherChapterToc.classList.remove('clicked');
-        }
-      });
-      chapterToc.classList.toggle('clicked');
-    });
+    }.bind(this));
+    
+    this.classList.toggle('clicked');
+  }
+  
+  chapterTocs.forEach(function(chapterToc) {
+    chapterToc.addEventListener('click', handleChapterTocClick);
   });
+  
+  // Check current page on load
+  const currentPage = window.location.pathname.split('/').pop();
+  const navLinks = document.querySelectorAll('nav.TOC a[href]');
+  let foundLink = false;
+  
+  navLinks.forEach(function(link) {
+    let linkPage = link.getAttribute('href').split('/').pop();
+    linkPage = linkPage.split('#')[0]; // Remove hash and everything after it
+    
+    // If linkPage is empty (just #id) or matches current page
+    if (linkPage === '' || linkPage === currentPage) {
+      foundLink = true;
+      let prevElement = link.closest('.sectionToc')?.previousElementSibling;
+      while (prevElement) {
+        if (prevElement.classList.contains('chapterToc')) {
+          prevElement.classList.add('clicked');
+          break;
+        }
+        prevElement = prevElement.previousElementSibling;
+      }
+    }
+  });
+  
+  if (!foundLink && chapterTocs.length > 0) {
+    chapterTocs[0].classList.add('clicked');
+  }
 });
-
