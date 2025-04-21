@@ -4,6 +4,8 @@
   --maintoc-padding: var(--content-padding);
   --maintoc-total: calc(var(--maintoc-width));
   --main-content-width: 80ch;
+  --header-height: 60px;
+  --footer-height: 60px;
 }
 
 *, *::before, *::after {
@@ -22,25 +24,59 @@ body {
   max-width: 100%;
 }
 
-/* main.main-content { */
-body {
+main.main-content {
+/* body { */
   padding: var(--content-padding);
   margin-left: var(--maintoc-total);
+  margin-top: var(--header-height);
   width: 100%;
   max-width: var(--main-content-width);
   border: 1px solid #ccc;
 }
 
 
-
-nav.TOC {
+header {
   position: fixed;
   top: 0;
   left: 0;
-  width: var(--maintoc-width); /* šířka levého sloupce */
-  height: 100vh; /* výška menu */
+  right: 0;
+  height: var(--header-height);
+  background-color: #ddd;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  transition: transform 0.3s ease;
+}
+
+/* header: hidden, shown only by JS if needed*/
+footer {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--footer-height);
+  background-color: #ddd;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+nav.TOC {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  width: var(--maintoc-width);
+  height: calc(100vh - var(--header-height));
+  overflow-y: auto;
   background-color: #f0f0f0;
   padding: var(--maintoc-padding);
+  z-index: 900;
+  transition: transform 0.3s ease;
+  transform: translateY(0); /* default state */
 }
 
 
