@@ -13,9 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const transform = style.transform;
 
     if (transform && transform !== 'none') {
-      // Typicky něco jako: "matrix(1, 0, 0, 1, -200, 0)"
+      // something like: "matrix(1, 0, 0, 1, -200, 0)"
       const matrix = new DOMMatrixReadOnly(transform);
-      const translateX = matrix.m41; // ← tady je to
+      const translateX = matrix.m41; // ← value of translateX
       if (translateX < 0) {
         console.log('menu hidden');
         return false;
@@ -34,12 +34,17 @@ document.addEventListener("DOMContentLoaded", () => {
       header.style.transform = "translateY(-100%)";
       const headerHeight = header.offsetHeight + "px";
       if(isMenuVisible(menu)) menu.style.transform = `translateY(-${headerHeight})`;
-      sectionTocs.style.transform = `translateY(-${headerHeight})`;
+      if(sectionTocs) sectionTocs.style.transform = `translateY(-${headerHeight})`;
     } else {
       // Scrolling up – show the header and reset menu position
       header.style.transform = "translateY(0)";
       if(isMenuVisible(menu)) menu.style.transform = "translateY(0)";
-      sectionTocs.style.transform = "translateY(0)";
+      if(sectionTocs) sectionTocs.style.transform = "translateY(0)";
+    }
+    // hide the menu if it is open by hamburger menu
+    if (menu.classList.contains('open')) {
+      menu.classList.toggle('open');
+      menu.style.transform = "translateX(-100%)";
     }
     lastScrollY = currentScrollY;
   }
