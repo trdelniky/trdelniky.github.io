@@ -6,6 +6,7 @@
   --main-content-width: 80ch;
   --header-height: 60px;
   --footer-height: 60px;
+  --sectiontoc-padding: calc(var(--maintoc-total) + var(--main-content-width) + var(--content-padding) * 2);
 }
 
 *, *::before, *::after {
@@ -80,11 +81,12 @@ nav.TOC {
 }
 
 
+
 .sectionTOCS{
   padding: var(--content-padding);
   position: fixed;
-  top: 0;
-  left: calc(var(--maintoc-total) + var(--main-content-width) + var(--content-padding) * 2);
+  top: var(--header-height);
+  left: var(--sectiontoc-padding);
 }
 
  .sectionTOCS .likesectionToc, .sectionTOCS .sectionToc,
@@ -110,4 +112,55 @@ nav.TOC span.chapterToc.clicked ~ span.sectionToc {
 nav.TOC span.chapterToc.clicked ~ span.chapterToc ~ span.sectionToc{
   display: none;
 }
+
+/* Hamburger button */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  gap: 6px; 
+}
+
+.hamburger span {
+  display: inline-flex;
+  width: 24px;
+  height: 3px;
+  background-color: black;
+  border-radius: 2px;
+
+}
+
+/* Hide nav.TOC on smaller screens */
+@media (max-width: 1000px) {
+  nav.TOC {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  nav.TOC.open {
+    transform: translateX(0);
+  }
+
+  main.main-content {
+    margin: 0;
+  }
+
+  .hamburger {
+    display: flex;
+    /* margin-left: auto; */
+  }
+  .sectionTOCS{
+    position: relative;
+    top: 0;
+    padding: 0;
+    left: 0;
+    margin: 1em 0;
+
+  }
+}
+
 

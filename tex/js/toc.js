@@ -47,4 +47,12 @@ document.addEventListener('DOMContentLoaded', function() {
   if (!foundLink && chapterTocs.length > 0) {
     chapterTocs[0].classList.add('clicked');
   }
+  const menuToggle = document.getElementById('menu-toggle');
+  const toc = document.querySelector('nav.TOC');
+
+  menuToggle?.addEventListener('click', function () {
+    toc.classList.toggle('open');
+  });
 });
+
+
