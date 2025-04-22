@@ -52,6 +52,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
   menuToggle?.addEventListener('click', function () {
     toc.classList.toggle('open');
+    // unfortunately, I nedd to show and hide the menu manually using transform, 
+    // because it interferes with the code that moves menu in js/headerfooter.js
+    if (toc.classList.contains('open')) {
+      toc.style.transform = "translateX(0)";
+    } else {
+      toc.style.transform = "translateX(-100%)";
+    }
   });
 });
 
