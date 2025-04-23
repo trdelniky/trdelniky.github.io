@@ -137,6 +137,11 @@ nav.TOC span.chapterToc.clicked ~ span.chapterToc ~ span.sectionToc{
 
 }
 
+/* this should prevent scrolling when the hamburer menu is opened */
+body.no-scroll {
+  overflow: hidden;
+}
+
 /* Hide nav.TOC on smaller screens */
 @media (max-width: 1000px) {
   nav.TOC {
