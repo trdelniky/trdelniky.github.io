@@ -1,12 +1,14 @@
 :root{
-  --maintoc-width: 200px;
-  --content-padding: 20px;
+  --maintoc-width: 20ch;
+  --content-padding: 2ch;
   --maintoc-padding: var(--content-padding);
   --maintoc-total: calc(var(--maintoc-width));
   --main-content-width: 80ch;
-  --header-height: 60px;
-  --footer-height: 60px;
+  --header-height: 6ch;
+  --footer-height: 6ch;
   --sectiontoc-padding: calc(var(--maintoc-total) + var(--main-content-width) + var(--content-padding) * 2);
+  --sectiontoc-width: var(--maintoc-width);
+  --page-width: calc(var(--maintoc-total) + var(--main-content-width) + var(--content-padding) * 2 + var(--sectiontoc-width) + var(--content-padding) * 2);
 }
 
 *, *::before, *::after {
@@ -85,6 +87,7 @@ nav.TOC {
   position: fixed;
   top: var(--header-height);
   left: var(--sectiontoc-padding);
+  max-width: var(--sectiontoc-width);
 }
 
 nav.TOC, .sectionTOCS{
@@ -143,7 +146,8 @@ body.no-scroll {
 }
 
 /* Hide nav.TOC on smaller screens */
-@media (max-width: 1000px) {
+/* We cannot use variables or calc, so the width is hardcoded */
+@media (max-width: 124ch) {
   nav.TOC {
     transform: translateX(-100%);
     transition: transform 0.3s ease;
@@ -155,6 +159,7 @@ body.no-scroll {
 
   main.main-content {
     margin: 0;
+    margin-top: var(--header-height);
   }
 
   .hamburger {
