@@ -50,16 +50,59 @@ document.addEventListener('DOMContentLoaded', function() {
   const menuToggle = document.getElementById('menu-toggle');
   const toc = document.querySelector('nav.TOC');
 
-  menuToggle?.addEventListener('click', function () {
+  menuToggle?.addEventListener('click', function (event) {
+    event.stopPropagation(); // will prevent the click from bubbling up to the document
     toc.classList.toggle('open');
-    // unfortunately, I nedd to show and hide the menu manually using transform, 
-    // because it interferes with the code that moves menu in js/headerfooter.js
+
     if (toc.classList.contains('open')) {
       toc.style.transform = "translateX(0)";
+      document.body.classList.add('no-scroll');
     } else {
       toc.style.transform = "translateX(-100%)";
+      document.body.classList.remove('no-scroll');
     }
   });
+
+  // close menu on outside click
+  document.addEventListener('click', function (event) {
+    const isClickInsideMenu = toc.contains(event.target);
+    const isClickOnToggle = menuToggle.contains(event.target);
+
+    if (!isClickInsideMenu && !isClickOnToggle && toc.classList.contains('open')) {
+      toc.classList.remove('open');
+      toc.style.transform = "translateX(-100%)";
+      document.body.classList.remove('no-scroll');
+    }
+  });
+  // close menu on Escape key
+  document.addEventListener('keydown', function (event) {
+    console.log(`key down: ${event.key}`);
+    if (event.key === 'Escape' && toc.classList.contains('open')) {
+      toc.classList.remove('open');
+      toc.style.transform = "translateX(-100%)";
+      document.body.classList.remove('no-scroll');
+    }
+  });
+  // hide menu on small screens
+  function updateMenuVisibility() {
+    const isToggleVisible = window.getComputedStyle(menuToggle).display !== 'none';
+
+    if (!isToggleVisible) {
+      // always show menu if the hamburger menu is not visible
+      toc.style.transform = "translateX(0)";
+      document.body.classList.remove('no-scroll'); // 
+    } else if (!toc.classList.contains('open')) {
+      // hide menu if the hamburger menu is visible and doesn't have the open class
+      toc.style.transform = "translateX(-100%)";
+      document.body.classList.remove('no-scroll');
+    }
+  }
+
+  // check if menu should be visible on load
+  updateMenuVisibility();
+
+  // check if menu should be visible on window resize
+  window.addEventListener('resize', updateMenuVisibility);
 });
 
 
