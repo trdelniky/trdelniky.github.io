@@ -6,51 +6,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let lastScrollY = window.scrollY;
 
-  function getMenuTranslateX(el){
+  function isMenuVisible(el){
     // the menu is hidden by translateX transformation when the display is not wide enough
     // we need to check if the menu is visible before applying more transformations
     const style = window.getComputedStyle(el);
     const transform = style.transform;
 
     if (transform && transform !== 'none') {
-      // something like: "matrix(1, 0, 0, 1, -200, 0)"
       const matrix = new DOMMatrixReadOnly(transform);
-      const translateX = matrix.m41; // ← value of translateX
-      return translateX;
-      // if (translateX < 0) {
-      //   console.log('menu hidden');
-      //   return ;
-      // }
+      const translateX = matrix.m41; // ← get value of translateX
+      if (translateX < 0) {
+        return false;
+      }
     } else {
-      console.log('No transform applied');
     }
-    return false;
+    return true;
   }
 
   function updateHeaderAndMenu() {
     const currentScrollY = window.scrollY;
 
-    let menutranslateX = getMenuTranslateX(menu);
     if (currentScrollY > lastScrollY) {
       // Scrolling down – hide the header and shift the menu up
       header.style.transform = "translateY(-100%)";
       const headerHeight = header.offsetHeight + "px";
-      if(menutranslateX && !menu.classList.contains('open')) menu.style.transform = `translateY(-${headerHeight}) translateX(${menutranslateX}px)`;
+      if(isMenuVisible(menu)) menu.style.transform = `translateY(-${headerHeight})`;
       if(sectionTocs) sectionTocs.style.transform = `translateY(-${headerHeight})`;
     } else {
       // Scrolling up – show the header and reset menu position
       header.style.transform = "translateY(0)";
-      if(menutranslateX && !menu.classList.contains('open')) menu.style.transform = "translateY(0) translateX(${menutranslateX}px)";
+      if(isMenuVisible(menu)) menu.style.transform = "translateY(0)";
       if(sectionTocs) sectionTocs.style.transform = "translateY(0)";
-    }
-    // hide the menu if it is open by hamburger menu
-    if (menu.classList.contains('open')) {
-      console.log(`menu open ${menutranslateX}`);
-      menu.classList.toggle('open');
-      menu.style.transform = "translateX(0)";
-    } else {
-      console.log(`menu closed ${menutranslateX}`);
-      menu.style.transform = "translateX(-100%)";
     }
     lastScrollY = currentScrollY;
   }
