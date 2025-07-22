@@ -21,7 +21,7 @@ jobs:
           run: |
             set -euxo pipefail
             rm -rf out
-            cs tex
+            cd tex
             make4ht -c web.cfg -lj index -a notice -d out trdelniky.cs.tex "mathjax"
 
       - name: Publish the web pages
