@@ -1,5 +1,5 @@
 :root{
-  --maintoc-width: 20ch;
+  --maintoc-width: 30ch;
   --content-padding: 2ch;
   --maintoc-padding: var(--content-padding);
   --maintoc-total: calc(var(--maintoc-width));
@@ -85,7 +85,7 @@ nav.TOC {
 
 
 
-.sectionTOCS{
+.chapterTOCS{
   padding: var(--content-padding);
   position: fixed;
   top: var(--header-height);
@@ -93,15 +93,15 @@ nav.TOC {
   max-width: var(--sectiontoc-width);
 }
 
-nav.TOC, .sectionTOCS{
+nav.TOC, .chapterTOCS{
   transition: transform 0.3s ease;
   transform: translateY(0); /* default state */
 }
 
- .sectionTOCS .likesectionToc, .sectionTOCS .sectionToc,
- .sectionTOCS .likesubsectionToc, .sectionTOCS .subsectionToc,
- .sectionTOCS .likesubsectionToc, .sectionTOCS .subsectionToc,
- .sectionTOCS .likesubsubsectionToc, .sectionTOCS .subsubsectionToc {margin-left:0em;}
+ .chapterTOCS .likesectionToc, .chapterTOCS .sectionToc,
+ .chapterTOCS .likesubsectionToc, .chapterTOCS .subsectionToc,
+ .chapterTOCS .likesubsectionToc, .chapterTOCS .subsectionToc,
+ .chapterTOCS .likesubsubsectionToc, .chapterTOCS .subsubsectionToc {margin-left:0em;}
 
 
 

@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const header = document.querySelector("header");
   const menu = document.querySelector("nav.TOC");
-  const sectionTocs = document.querySelector(".sectionTOCS");
+  const sectionTocs = document.querySelector(".chapterTOCS");
   const footer = document.querySelector("footer");
 
   let lastScrollY = window.scrollY;
