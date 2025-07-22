@@ -143,6 +143,10 @@ nav.TOC span.chapterToc.clicked ~ span.chapterToc ~ span.sectionToc{
 
 }
 
+h1,h2,h3,h4,h5,h6 {
+  margin-top: 1rem;
+}
+
 /* this should prevent scrolling when the hamburer menu is opened */
 body.no-scroll {
   overflow: hidden;

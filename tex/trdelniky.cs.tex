@@ -7,6 +7,10 @@
 \title{Trdelník}
 \begin{document}
 
+% nechceme používat aktivní znak -, dělá to problém v příkazu \hyperref, když se odkazujeme na label co obsahuje spojovník
+\shorthandoff{-}
+
+
 \frontmatter
 \maketitle
 \ifdefined\HCode\else
@@ -108,7 +112,7 @@ Historické recepty lze nalézt v těchto pramenech:
 \item EU dokumentace k chráněnému označení Skalický trdelník
 \end{itemize}
 
-\chapter{Anotovaná chronologická bibliografie}
+\chapter{Bibliografie}
 
 \input{cs/bibliography.tex}
 
