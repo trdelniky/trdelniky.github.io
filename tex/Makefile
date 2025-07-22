@@ -9,7 +9,10 @@ html_inputs=web.cfg $(wildcard css/*.css) $(wildcard html/*.html) $(wildcard js/
 
 .PHONY: all 
 
-all: ${cs_pdf} ${cs_html}
+all: vimwiki_import ${cs_pdf} ${cs_html} 
+
+vimwiki_import:
+	lua vimwiki_import.lua 
 
 ${cs_pdf}: ${cs_tex_sources}
 	latexmk -pdf -pdflatex="lualatex -interaction=nonstopmode" $<
