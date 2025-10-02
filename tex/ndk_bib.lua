@@ -80,5 +80,15 @@ if not result then
   os.exit(1)
 end
 
-print(result)
+if options.output then
+  local file, err = io.open(options.output, "w")
+  if not file then
+    print("Error: Failed to open output file: " .. err)
+    os.exit(1)
+  end
+  file:write(result)
+  file:close()
+else
+  io.stdout:write(result)
+end
 
