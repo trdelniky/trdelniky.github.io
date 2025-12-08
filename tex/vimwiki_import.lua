@@ -1,6 +1,7 @@
 -- we need to find the vimwiki path, to import the vimwiki files
 local nvim = io.popen("nvim --headless -c 'echo g:vimwiki_list[0].path | quit' 2>&1", "r")
-local vimwiki_path = nvim:read("*a"):gsub("%s+$", ""):gsub("^%s+", "")
+local vimwiki_path = nvim:read("*a"):gsub("%s+$", ""):gsub("^%s+", "") 
+if not vimwiki_path:match("%/$") then vimwiki_path = vimwiki_path .. "/" end
 local tex_path = "cs/"
 nvim:close()
 if vimwiki_path == "" then
