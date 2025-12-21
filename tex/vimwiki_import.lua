@@ -59,7 +59,11 @@ local function convert(filename, output_name)
   end
   local input_file = vimwiki_path .. filename
   local output_path = tex_path .. output_name
-  local pandoc = io.popen("pandoc -f vimwiki -t latex -o " .. output_path .. " " .. input_file .. " 2>&1", "r")
+  local pandoc = io.popen("pandoc --lua-filter=pandoc/pandoc-filtr.lua -f vimwiki -t latex -o " .. output_path .. " " .. input_file .. " 2>&1", "r")
+  if pandoc == nil then
+    print("Error: Could not open pandoc process.")
+    os.exit()
+  end
   pandoc:read("*a")
   pandoc:close()
   return output_path
