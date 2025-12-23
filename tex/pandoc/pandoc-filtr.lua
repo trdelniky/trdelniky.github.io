@@ -13,7 +13,7 @@ local function get_tag(text)
     text = text:sub(2)
   end
   -- tagy nemůžou obsahovat mezery, používám místo toho podtržítko
-  texxt = text:gsub("_", " ")
+  text = text:gsub("_", " ")
   local first_char = text:sub(1,1)
   if command_map[first_char] then
     local command = command_map[first_char]
