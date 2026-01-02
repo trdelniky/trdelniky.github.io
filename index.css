@@ -1,27 +1,11 @@
  
 /* start css.sty */
-.ec-lmr-9x-x-99{font-size:89%;}
-.ec-lmr-17x-x-87{font-size:147%;}
-.ec-lmr-10x-x-106{font-size:106%;}
-.ec-lmtt-9x-x-99{font-size:89%; font-family: monospace,monospace;}
-.ec-lmtt-9x-x-99{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-99{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-99{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-99{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-99{ font-family: monospace,monospace;}
-.ec-lmbx-9x-x-99{font-size:89%; font-weight: bold;}
-.ec-lmbx-9x-x-99{ font-weight: bold;}
-.ec-lmbx-9x-x-99{ font-weight: bold;}
-.ec-lmbx-9x-x-99{ font-weight: bold;}
-.ec-lmbx-9x-x-99{ font-weight: bold;}
-.ec-lmbx-9x-x-99{ font-weight: bold;}
-.ts1-lmr9-x-x-99{font-size:89%;}
-.ec-lmri-9x-x-99{font-size:89%; font-style:italic;}
-.ec-lmri-9x-x-99{ font-style:italic;}
-.ec-lmri-9x-x-99{ font-style:italic;}
-.ec-lmri-9x-x-99{ font-style:italic;}
-.ec-lmri-9x-x-99{ font-style:italic;}
-.ec-lmri-9x-x-99{ font-style:italic;}
+.rm-lmr-10x-x-98{}
+.rm-lmr-17x-x-96{font-size:163%;}
+.rm-lmr-12x-x-97{font-size:116%;}
+.ec-lmtt-10x-x-98{ font-family: monospace,monospace;}
+.rm-lmbx-10x-x-98{ font-weight: bold;}
+.rm-lmri-10x-x-98{ font-style:italic;}
 p{margin-top:0;margin-bottom:0}
 p.indent{text-indent:0;}
 p + p{margin-top:1em;}
