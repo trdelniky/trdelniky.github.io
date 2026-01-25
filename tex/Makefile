@@ -19,5 +19,5 @@ ${cs_pdf}: ${cs_tex_sources}
 
 ${cs_html}: ${cs_tex_sources} ${html_inputs}
 	mkdir -p ${html_build_dir}
-	make4ht -a debug -lc web.cfg -B ${html_build_dir} -d ${html_out_dir} ${cs_tex} "mathjax"
+	make4ht -e build.lua -a debug -lc web.cfg -B ${html_build_dir} -d ${html_out_dir} ${cs_tex} "mathjax"
 

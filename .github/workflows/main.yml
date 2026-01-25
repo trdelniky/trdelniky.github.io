@@ -22,8 +22,9 @@ jobs:
             set -euxo pipefail
             rm -rf out
             cd tex
-            make4ht -c web.cfg -lj index -a notice -d out trdelniky.cs.tex "mathjax"
+            make4ht -e build.lua -c web.cfg -lj index -a notice -d out trdelniky.cs.tex "mathjax"
             cp html/google5fe6afe7d7955962.html out
+            cp html/robots.txt out
 
       - name: Publish the web pages
         uses: peaceiris/actions-gh-pages@v3
