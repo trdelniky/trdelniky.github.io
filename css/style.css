@@ -156,12 +156,26 @@ body.no-scroll {
 /* We cannot use variables or calc, so the width is hardcoded */
 @media (max-width: 124ch) {
   nav.TOC {
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
+    /* transform: translateX(-100%); */
+    /* transition: transform 0.3s ease; */
+     position: fixed;
+    left: 0;
+    top: var(--header-height);
+    width: var(--maintoc-width);
+
+    /* SEO-safe hiding */
+    max-height: 0;
+    overflow: hidden;
+
+    transform: none;          /* DŮLEŽITÉ */
+    visibility: visible;      /* DŮLEŽITÉ */
+    opacity: 1;               /* DŮLEŽITÉ */
   }
 
   nav.TOC.open {
-    transform: translateX(0);
+    /* transform: translateX(0); */
+    max-height: 100vh;
+    overflow-y: auto;
   }
 
   main.main-content {
