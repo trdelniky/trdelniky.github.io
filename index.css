@@ -1,11 +1,10 @@
  
 /* start css.sty */
-.rm-lmr-10x-x-98{}
-.rm-lmr-17x-x-96{font-size:163%;}
-.rm-lmr-12x-x-97{font-size:116%;}
-.ec-lmtt-10x-x-98{ font-family: monospace,monospace;}
-.rm-lmbx-10x-x-98{ font-weight: bold;}
-.rm-lmri-10x-x-98{ font-style:italic;}
+.rm-lmr-17{font-size:170%;}
+.rm-lmr-12{font-size:120%;}
+.ec-lmtt-10{ font-family: monospace,monospace;}
+.rm-lmbx-10{ font-weight: bold;}
+.rm-lmri-10{ font-style:italic;}
 p{margin-top:0;margin-bottom:0}
 p.indent{text-indent:0;}
 p + p{margin-top:1em;}
